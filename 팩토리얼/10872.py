@@ -13,7 +13,7 @@ for i in range(1, N + 1):  # 1부터 N까지 반복
 print(f"{factorial}")  # 결과 출력
 
 
-# 2. 
+# 2. 재귀함수를 이용한 방법
 def factorial_recursive(n):
     # 종료 조건: n이 1 이하일 때, 팩토리얼 값 1 반환
     if n == 1 or n == 0:
