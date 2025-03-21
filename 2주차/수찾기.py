@@ -6,7 +6,7 @@ m = int(input().strip())  # 찾아야 할 숫자의 개수
 B = list(map(int, input().split()))  # 찾고자 하는 숫자 리스트 (B)
 
 # 이진 탐색 함수 (Binary Search)
-def binary_search(target_from_b, list_a):
+def binary_search(target_from_b, list_a): # 찾고자 하는 값과 탐색 대상 리스트
     current_min = 0  # 탐색 범위의 시작점 (왼쪽 포인터, pl)
     current_max = n - 1  # 탐색 범위의 끝점 (오른쪽 포인터, pr)
     cursor = (current_min + current_max) // 2  # 현재 탐색할 중앙값 (pc)
