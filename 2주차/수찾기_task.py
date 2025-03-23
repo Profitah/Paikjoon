@@ -1,23 +1,22 @@
 from typing import Any, Sequence 
+
 # 함수정의
-def A에서X찾기(A: Sequence, X: Any) -> int:
-    pl = 0
-    pr = len(A) - 1
-
-    while pl <= pr:
-
-        pc = (pl + pr) // 2
+def A에서X찾기(A: Sequence, X: Any) -> int: # 순서가 있는 리스트 A와 찾고자 하는 값 X를 입력받는다.
+    pl = 0 # 왼쪽 포인터
+    pr = len(A) - 1  # 오른쪽 포인터 #배열의 길이 -1 를 오른쪽 포인터로 설정한다. # 왜? 인덱스는 0부터 시작하기 때문에 배열의 길이에서 1을 뺀 값이 마지막 인덱스이다.
+    while pl <= pr: # 왼쪽 포인터가 오른쪽 포인터보다 작거나 같을 때까지 
+        pc = (pl + pr) // 2 # 중앙값(pc)를 계산한다. # 왼쪽 포인터와 오른쪽 포인터를 더한 후 2로 나누어준 값이 중앙값이 된다.
     
-        if A[pc] < X:
-            pl = pc + 1
+        if A[pc] < X: # 중앙값이 찾고자 하는 값보다 작으면
+            pl = pc + 1 # 왼쪽 포인터를 중앙값 오른쪽으로 이동한다.
 
-        elif A[pc] == X:
-            return 1
+        elif A[pc] == X: # 중앙값이 찾고자 하는 값과 같으면
+            return 1 # 1을 반환한다.
+ 
+        else: # 중앙값이 찾고자 하는 값보다 크면
+            pr = pc - 1 # 오른쪽 포인터를 중앙값 왼쪽으로 이동한다.
 
-        else:
-            pr = pc - 1
-
-    return 0
+    return 0 # 찾고자 하는 값이 없으면 0을 반환한다.
 
 # 사용자 상호작용
 N = int(input()) # A 리스트의 길이 
@@ -27,5 +26,6 @@ M = int(input()) # M 리스트의 길이
 M_list = list(map(int, input().split())) # M 리스트의 요소들
 
 # 결과 출력
+# for문을 이용한 반복 코드
 for i in M_list: # M 리스트들의 요소들을 하나씩 꺼내서 
     print(A에서X찾기(A, i)) # A 리스트에서 그 요소가 있는지 확인한다. 있으면 1, 없으면 0을 출력한다.
