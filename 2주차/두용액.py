@@ -1,13 +1,11 @@
-# 투포인터 쓰지 말 것
-
 import sys
 input = sys.stdin.readline  
 
 # 용액의 수 입력
-num_liquids = int(input())
+num_liquids = int(input()) # 용액의 수
 
 # 용액 리스트 입력받아 정렬
-liquids = list(map(int, input().split()))
+liquids = list(map(int, input().split())) # 용액 리스트
 liquids.sort()
 
 # 현재까지 찾은 최소 절댓값의 합

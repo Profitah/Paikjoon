@@ -3,6 +3,7 @@ import sys
 input = sys.stdin.readline
 n,m = int(input().split()) # 베어낼 나무의 수와 상근이가 가져갈 나무의 길이
 tree_h = list(map(int,(input().split()))) # 나무의 높이를 리스트 안에 담자
+tree_h.sort() # 나무의 높이 정렬. 왜인지 백준은 없어도 오답처리 안해준다.
 
 pl = 0 # 절단기의 최소 높이
 pr = max(tree_h) # 절단기의 최대 높이
