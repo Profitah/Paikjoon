@@ -1,18 +1,11 @@
 import sys
 input = sys.stdin.readline  
 
-# 용액의 수 입력
 num_liquids = int(input()) # 용액의 수
-
-# 용액 리스트 입력받아 정렬
 liquids = list(map(int, input().split())) 
 liquids.sort()
-
-# 현재까지 찾은 최소 절댓값의 합
-min_abs_sum = float('inf') # 최소 절댓값 합을 구하기 위해 초기값을 무한대로 설정
-
-# 가장 0에 가까운 두 용액의 쌍
-best_pair = (0, 0) # 가장 0에 가까운 두 용액의 쌍을 구하기 위해 초기값을 0으로 설정
+min_abs_sum = float('inf') 
+best_pair = (0, 0)
 
 # 첫 번째 용액 선택
 for first_index in range(num_liquids - 1): # 첫 번째 용액을 선택하기 위해 용액의 수 - 1만큼 반복
