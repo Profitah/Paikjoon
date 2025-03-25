@@ -7,6 +7,8 @@ queue = collections.deque() # deque를 사용하여 큐를 만든다. # 여기�
 # deque는 "양방향 가능"이지, "양방향 필수"는 아니다.
 
 for i in range(n): # n번 반복한다.
+     # i는 0부터 n-1까지의 인덱스로, 각 명령어의 순서를 나타낸다 (총 n개의 명령어 처리)
+     
     command = input().split() # 명령어를 입력받는다.
 
     if command[0] == 'push': # 큐에 정수를 넣는다.
