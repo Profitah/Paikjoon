@@ -20,7 +20,7 @@ for i in range(n): # n번 반복한다.
         else:
             print(queue.popleft()) # popleft() 함수를 사용하여 큐에서 정수를 빼고, 빼낸 정수를 출력한다. # 정수는 앞에서 부터 출력한다. popleft()  
     elif command[0] == 'size': # 큐의 크기를 출력한다.
-        print(len(queue)) # 큐의 길이를 출력한다.
+        print(len(queue)) # 큐의 길이를 출력한다.x
     elif command[0] == 'empty': # 큐가 비어있으면 1, 아니면 0을 출력한다.
         if len(queue)==0: # 만약에 큐가 완전히 비어있다면 
             print(1) # 1을 출력하라 
