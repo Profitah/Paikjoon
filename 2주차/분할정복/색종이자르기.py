@@ -1,9 +1,7 @@
 import sys
 
 input = sys.stdin.readline  # 입력 받기 위한 함수 (빠르게 입력을 받기 위해 사용)
-
 n = int(input())  # 전체 종이의 한 변 크기 입력
-
 paper_color = []  # 종이의 색을 저장할 리스트
 
 # 종이 색 정보를 입력받아서 paper_color에 저장
