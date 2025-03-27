@@ -5,11 +5,11 @@ input = sys.stdin.readline
 N = int(input())
 tree = {} # 딕셔너리를 사용한 구현
 
-for i in range(N):
-    root, left, right = input().strip().split()
-    tree[root] = [left, right]
+for i in range(N): # N번 동안
+    root, left, right = input().strip().split() # root, left, right를 공백없이 입력받아라
+    tree[root] = [left, right] # tree의 키값은 root, 거기에 left와 right를 입력받아라 
 
-def preorder_stack(start):
+def preorder_stack(start): # start 
     result = []
     stack = [start]
 
