@@ -44,7 +44,9 @@ for _ in range(T):
     note2 = list(map(int, input().split()))
 
     print('\n'.join(['1' if x in note1 else '0' for x in note2]))
-
     
+
+    우선 gpt 형님이 던져주신 코드를 가져왔는데.. 음... 별로다
     """
 
+12q q
