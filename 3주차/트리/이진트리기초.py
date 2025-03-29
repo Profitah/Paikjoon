@@ -17,7 +17,7 @@ def preorder(root):
         preorder(tree[root][0])  # 왼쪽 자식
         preorder(tree[root][1])  # 오른쪽 자식
 
-# 중위 순회ㅊ
+# 중위 순회
 def inorder(root):
     if root != ".":
         inorder(tree[root][0])  # 왼쪽 자식
