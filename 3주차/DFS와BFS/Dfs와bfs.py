@@ -10,13 +10,12 @@ for _ in range(m):
     graph[a].append(b)
     graph[b].append(a)
 
-# 방문 순서를 보장하기 위해 정렬
 for i in range(1, n+1):
     graph[i].sort()
 
 def dfs(visit):
     방문[visit] = True
-    print(visit, end=' ')  # ✅ 공백 추가
+    print(visit, end=' ')  
     for i in graph[visit]:
         if not 방문[i]:
             dfs(i)
