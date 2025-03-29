@@ -1,6 +1,6 @@
 from collections import deque
 
-n,m,v = int(input())
+n,m,v = map(int,input().split())
 
 # 인접 리스트 만들기
 graph = []
@@ -44,14 +44,6 @@ def bfs(visit):
 # DFS 호출
 dfs(v)
 print()
-
 # BFS 호출
 visited = [False] * (n+1)
 bfs(v)
-print()
-
-
-
-
-
-
