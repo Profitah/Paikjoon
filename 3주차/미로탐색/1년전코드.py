@@ -6,7 +6,7 @@ rows, cols = map(int, input().split())
 
 # 미로 지도 입력받기 (2차원 리스트)
 maze = []
-for _ in range(rows):
+for i in range(rows):
     line = input().strip()
     maze.append([int(c) for c in line])
 
