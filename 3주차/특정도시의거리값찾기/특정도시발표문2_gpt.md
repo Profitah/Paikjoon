@@ -239,7 +239,6 @@ BFS 알고리즘은 출발 도시에서 시작하여 도로를 따라 한 단계
 실제 경로 탐색 문제(예: 내비게이션 시스템, 네트워크 분석)에도 유용하게 적용될 수 있습니다.
 
 ```python
-# 전체 코드
 import sys
 from collections import deque
 
