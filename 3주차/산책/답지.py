@@ -4,12 +4,13 @@ input = sys.stdin.readline
 
 # 1. 입력
 N = int(input())  # 장소 수 (노드 수)
-room_str = input().strip()  # 실내/실외 정보 (예: '10111')
+room_str = input().strip()  # 실내/실외 정보 
 A = list(map(int, room_str))  # 문자열을 정수 리스트로 변환
 
 # 2. 그래프 초기화
-graph = [[] for _ in range(N)]
-for _ in range(N - 1):
+graph = []
+for i in range(N):
+    graph.append([]) 
     u, v = map(int, input().split())
     u -= 1  # 인덱스 보정 (1 → 0부터 시작)
     v -= 1

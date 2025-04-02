@@ -1,49 +1,48 @@
-import sys
-sys.setrecursionlimit(10**6)  # 재귀 깊이 제한 설정 (기본 제한 초과 방지)
-input = sys.stdin.readline  # 빠른 입력을 위한 설정
+# 다시 보니 만점이 아니여서 다시 짜야 한다.
 
-n = int(input())  # 정점(장소)의 개수 입력 받기
-A = input().rstrip()  # 실내/실외 정보 입력 받기 ('1': 실내, '0': 실외) #rstrip()으로 개행 문자 제거
+import sys  # 시스템 관련 기능을 사용하기 위해 sys 모듈 import
+sys.setrecursionlimit(10**6)  # 재귀 호출 제한을 늘려줌 (기본 제한보다 깊게 탐색 가능하도록 설정)
+input = sys.stdin.readline  # 입력 속도를 빠르게 하기 위해 sys.stdin.readline 사용
 
-graph = []  # 그래프 인접 리스트 (초기화) ← 오류 있음, 아래에서 수정 필요
+n = int(input())  # 정점(장소) 수 입력
 
-place = [0] * (n + 1)  # 장소 정보 저장용 배열 (1번부터 시작)
-visited = [0] * (n + 1)  # 방문 여부 저장 배열 (1번부터 시작)
+room_str = input().strip()  # 실내/실외 정보 입력 (공백 제거된 문자열)
+A = list(map(int, room_str))  # 각 자리의 '0' 또는 '1'을 정수형 리스트로 변환하여 저장
 
-for i in range(n):  # n개의 장소 정보를 읽어서
-    place[i + 1] = int(A[i])  # 1-based index로 실내/실외 정보 저장
+graph = []  # 그래프(인접 리스트) 초기화
+for i in range(n + 1):  # 노드 수 + 1 만큼 반복 (1번 노드부터 사용하기 때문)
+    graph.append([])  # 각 노드의 인접 리스트를 빈 리스트로 만들어 추가
 
-graph = [[] for _ in range(n + 1)]  # 각 정점의 인접 리스트를 위한 그래프 초기화
+for _ in range(n - 1):  # n - 1개의 간선을 입력 받음
+    u, v = map(int, input().split())  # 양 끝점 입력
+    u -= 1  # 문제는 1-indexed, 우리는 0-indexed로 사용
+    v -= 1  # 인덱스 보정
+    graph[u].append(v)  # u와 v를 서로 연결 (무방향 간선)
+    graph[v].append(u)
 
-for i in range(n - 1):  # n - 1개의 간선을 입력 받아
-    a, b = map(int, input().split())  # a, b 정점 번호 입력
-    graph[a].append(b)  # 양방향 간선 추가 (a → b)
-    graph[b].append(a)  # 양방향 간선 추가 (b → a)
+visited = [False] * n  # 방문 여부를 저장하는 리스트 초기화 (n개의 노드)
 
-def dfs(node):  # DFS 함수 정의 (현재 정점 기준)
-    count = 0  # 연결된 실내 노드 수 세기
-    for neighbor in graph[node]:  # 인접한 모든 노드에 대해
-        if place[neighbor] == 1:  # 이웃이 실내라면
-            count += 1  # 유효 경로 1개 증가
-        elif not visited[neighbor]:  # 이웃이 실외면서 아직 방문 안 했다면
-            visited[neighbor] = 1  # 방문 처리
-            count += dfs(neighbor)  # 재귀 DFS로 탐색 계속
-    return count  # 해당 컴포넌트에서 연결된 실내 노드 수 반환
+def dfs(node):  # DFS 함수 정의
+    visited[node] = True  # 현재 노드를 방문 처리
+    cnt = 0  # 현재 실외 컴포넌트에서 연결된 실내 노드 수
+    for neighbor in graph[node]:  # 인접한 노드들 순회
+        if A[neighbor] == 1:  # 실내 노드라면
+            cnt += 1  # 유효한 실내 노드 수 증가
+        elif not visited[neighbor] and A[neighbor] == 0:  # 아직 방문하지 않은 실외 노드라면
+            cnt += dfs(neighbor)  # DFS로 탐색 계속 진행
+    return cnt  # 연결된 실내 노드 수 반환
 
-answer = 0  # 정답(총 경로 수)을 저장할 변수
+answer = 0  # 정답을 저장할 변수 초기화
 
-# 실내-실내 직접 연결된 경우를 탐색
-for i in range(1, n + 1):
-    if place[i] == 1:  # i번 노드가 실내라면
-        for visit in graph[i]:  # 인접 노드들 중
-            if place[visit] == 1:  # 이웃도 실내라면
-                answer += 1  # 경로 1개 추가 (양쪽에서 두 번 세지만 나중에 따로 처리 안 함)
+for i in range(n):  # 모든 노드에 대해 반복
+    if A[i] == 1:  # 실내 노드라면
+        for j in graph[i]:  # 인접한 노드들 중
+            if A[j] == 1:  # 이웃도 실내라면
+                answer += 1  # 실내 ↔ 실내 간선 1개 추가 (양쪽에서 세므로 나중에 나눌 예정)
 
-# 실외를 통해 연결된 실내 노드 쌍 계산
-for i in range(1, n + 1):
-    if place[i] == 0 and not visited[i]:  # 실외이면서 아직 방문하지 않았다면
-        visited[i] = 1  # 방문 처리
-        count = dfs(i)  # DFS로 연결된 실내 노드 수 확인
-        answer += count * (count - 1)  # 실내 노드 쌍의 수 = 조합 countC2 = count * (count - 1)
+for i in range(n):  # 모든 노드에 대해 반복
+    if A[i] == 0 and not visited[i]:  # 실외 노드이고 아직 방문하지 않았다면
+        cnt = dfs(i)  # 연결된 실내 노드 수를 DFS로 탐색
+        answer += cnt * (cnt - 1)  # 조합 수(cntC2)를 계산하여 유효 경로 수에 더함
 
-print(answer)  # 정답 출력
+print(answer // 2)  # 실내-실내 간선을 중복 계산했기 때문에 2로 나눠서 출력
