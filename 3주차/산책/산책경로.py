@@ -1,20 +1,25 @@
-# index error
+# index error 못 고치겠음 ㅠㅠ
 
 import sys
 input = sys.stdin.readline
 
 N = int(input())
-A = list(map(int, input().split()))  # 실내/실외 정보
+A = list(map(int, input().split()))  
 graph = [[] for i in range(N)]
-visited = [False] * N
 
-# 간선 입력 (N - 1개의 간선이 주어진다고 가정)
+if len(A) != N:
+    print("입력 오류: 실내/실외 정보 개수가 맞지 않습니다.")
+    exit()
+
+
 for i in range(N - 1):
     u, v = map(int, input().split())
     u -= 1
     v -= 1
     graph[u].append(v)
     graph[v].append(u)
+
+visited = [False] * N
 
 def dfs(node):
     visited[node] = True
@@ -28,14 +33,12 @@ def dfs(node):
 
 answer = 0
 
-# 실내-실내 연결
 for i in range(N):
     if A[i] == 1:
         for j in graph[i]:
-            if A[j] == 1:
+            if A[j] == 1 and i < j:  
                 answer += 1
 
-# 실외에서 연결 가능한 실내 쌍들
 for i in range(N):
     if A[i] == 0 and not visited[i]:
         cnt = dfs(i)
