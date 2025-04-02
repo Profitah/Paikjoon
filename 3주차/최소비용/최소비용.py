@@ -1,3 +1,5 @@
+# 실패 
+
 import heapq
 
 INF = int(1e9)
@@ -5,7 +7,7 @@ INF = int(1e9)
 N = int(input())  # 노드 수
 M = int(input())  # 간선 수
 
-graph = [[] for _ in range(N + 1)]
+graph = 1
 
 # 간선 입력
 for _ in range(M):
