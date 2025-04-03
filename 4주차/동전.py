@@ -11,3 +11,5 @@ for i in range(n - 1, -1, -1):
     k %= coins[i]         
 
 print(ans)
+
+https://puleugo.tistory.com/20
