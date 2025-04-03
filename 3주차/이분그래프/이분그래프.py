@@ -1,3 +1,5 @@
+# 뭔가 오류뜸
+
 import sys
 sys.setrecursionlimit(10**6)  # 재귀 깊이 제한 설정
 input = sys.stdin.readline  # 빠른 입력 처리
